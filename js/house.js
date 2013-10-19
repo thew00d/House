@@ -61,6 +61,7 @@ $( document ).ready(function() {
 				}
 
 				console.log('image' + currentPosition);
+				console.log(housePositions[currentPosition]);
 				$("#housepic").addClass('image' + currentPosition)
 
 
@@ -70,7 +71,7 @@ $( document ).ready(function() {
 
 	}
 
-	function position(position, forwardPosition, backPosition, leftPosition, rightPosition) 
+	function position(position, forwardPosition, rightPosition, backPosition, leftPosition) 
 	{
 	  this.position = position;
 	  this.forwardPosition = forwardPosition;
@@ -82,6 +83,8 @@ $( document ).ready(function() {
 
 	function positions() 
 	{
+
+		//forwardPosition, rightPosition, backPosition, leftPosition
 		// 0
 		housePositions.push(new position(0, 0, 0, 0, 0));
 
@@ -89,22 +92,22 @@ $( document ).ready(function() {
 		housePositions.push(new position(1, 2, 0, 0, 0));
 
 		// 2
-		housePositions.push(new position(2, 9, 1, 0, 3));
+		housePositions.push(new position(2, 9, 3, 1, 0));
 
 		// 3
-		housePositions.push(new position(3, 5, 4, 2, 0));
+		housePositions.push(new position(3, 5, 4, 0, 2));
 
 		// 4
 		housePositions.push(new position(4, 6, 0, 0, 3));				
 
 		// 5
-		housePositions.push(new position(5, 7, 6, 0, 0));
+		housePositions.push(new position(5, 7, 6, 3, 0));
 
 		// 6
 		housePositions.push(new position(6, 0, 0, 4, 5));
 
 		// 7
-		housePositions.push(new position(7, 9, 1, 0, 3));
+		housePositions.push(new position(7, 13, 8, 5, 0));
 
 		// 8
 		housePositions.push(new position(8, 0, 0, 0, 7));
