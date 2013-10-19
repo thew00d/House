@@ -16,34 +16,110 @@ $( document ).ready(function() {
 			function() 
 			{ 		
 				event.preventDefault();
-				console.log("here");
-				if (housePositions[currentPosition].forwardposition != 0)
-				{
-					currentPosition = housePositions[currentPosition].forwardposition;
-					console.log(currentPosition);
 
-				}          
+				$("#housepic").removeClass('image' + currentPosition)
+				switch(this.id)
+				{
+					case 'goforward':
+						console.log(housePositions[currentPosition].forwardPosition);
+						if (housePositions[currentPosition].forwardPosition != 0)
+						{
+
+							currentPosition = housePositions[currentPosition].forwardPosition;
+
+						}          
+
+					  break;
+					case 'goright':
+						console.log(housePositions[currentPosition].rightPosition);
+						if (housePositions[currentPosition].rightPosition != 0)
+						{
+							currentPosition = housePositions[currentPosition].rightPosition;
+
+						}          
+
+					  break;
+					case 'goback':
+						console.log(housePositions[currentPosition].backPosition);						
+						if (housePositions[currentPosition].backPosition != 0)
+						{
+							currentPosition = housePositions[currentPosition].backPosition;
+
+						}          
+
+					  break;
+					case 'goleft':
+						console.log(housePositions[currentPosition].leftPosition);							
+						if (housePositions[currentPosition].leftPosition != 0)
+						{
+							currentPosition = housePositions[currentPosition].leftPosition;
+							
+						}          
+					  break;
+					default:
+						break;
+				}
+
+				console.log('image' + currentPosition);
+				$("#housepic").addClass('image' + currentPosition)
+
+
 				return false; 
 			} 
 		);	
 
 	}
 
-	function position(position, forwardposition, backposition, leftposition, rightposition) 
+	function position(position, forwardPosition, backPosition, leftPosition, rightPosition) 
 	{
 	  this.position = position;
-	  this.forwardposition = forwardposition;
-	  this.backposition = backposition;
-	  this.leftposition = leftposition;
-	  this.rightposition = rightposition;
+	  this.forwardPosition = forwardPosition;
+	  this.backPosition = backPosition;
+	  this.leftPosition = leftPosition;
+	  this.rightPosition = rightPosition;
 	}
 
 
 	function positions() 
 	{
+		// 0
 		housePositions.push(new position(0, 0, 0, 0, 0));
+
+		// 1
 		housePositions.push(new position(1, 2, 0, 0, 0));
+
+		// 2
 		housePositions.push(new position(2, 9, 1, 0, 3));
+
+		// 3
+		housePositions.push(new position(3, 5, 4, 2, 0));
+
+		// 4
+		housePositions.push(new position(4, 6, 0, 0, 3));				
+
+		// 5
+		housePositions.push(new position(5, 7, 6, 0, 0));
+
+		// 6
+		housePositions.push(new position(6, 0, 0, 4, 5));
+
+		// 7
+		housePositions.push(new position(7, 9, 1, 0, 3));
+
+		// 8
+		housePositions.push(new position(8, 0, 0, 0, 7));
+
+		// 9
+		housePositions.push(new position(9, 10, 0, 2, 0));
+
+		// 10
+		housePositions.push(new position(10, 0, 0, 0, 0));
+
+		// 11
+		housePositions.push(new position(11, 0, 0, 0, 0));
+
+		// 12
+		housePositions.push(new position(12, 0, 0, 0, 0));
 	}
 
 });
