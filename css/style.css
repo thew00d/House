@@ -63,7 +63,10 @@ body {
 	margin: auto;
 }
 
-header {
+header h2 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 5em;
+    margin: 0px 0px;
 
 }
 
@@ -72,8 +75,16 @@ footer {
 }
 
 h1 {
-     font-family: 'Josefin Sans', sans-serif;
-    font-size: 1.8em;
+    font-family: 'Kavoon', sans-serif;
+    font-size: 7em;
+    font-weight: bold;
+    margin: 0px;
+}
+
+#description
+{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 3em; 
 }
 
 /*----------------------------------------------------------------------------- 
@@ -188,6 +199,10 @@ h1 {
 #house {      
      width: 550px;      
      height: 550px; 
+}
+
+#housepic {
+    margin: 0px auto;
 }
 
 .image1 {
