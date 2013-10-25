@@ -75,7 +75,7 @@ footer {
 }
 
 h1 {
-    font-family: 'Kavoon', sans-serif;
+    font-family: 'Gudea', sans-serif;
     font-size: 7em;
     font-weight: bold;
     margin: 0px;
@@ -171,7 +171,7 @@ h1 {
 }
 
 #goback {
-     margin: 450px 250px;
+     margin: 0px 250px;
      display:inline-block;
      width:40px;
      height:40px;
@@ -189,11 +189,11 @@ h1 {
 }
 
 #goleft {
-     float: left;
+
 }
 
 #goright {
-     float: right;
+
 }
 
 #house {      
@@ -354,6 +354,34 @@ h1 {
 
 .image22 {
      background: url(../images/22.jpg) no-repeat;
+     width: 550px;
+     height: 550px;
+     background-position:center;
+}
+
+.image23 {
+     background: url(../images/23.jpg) no-repeat;
+     width: 550px;
+     height: 550px;
+     background-position:center;
+}
+
+.image24 {
+     background: url(../images/24.jpg) no-repeat;
+     width: 550px;
+     height: 550px;
+     background-position:center;
+}
+
+.image25 {
+     background: url(../images/25.jpg) no-repeat;
+     width: 550px;
+     height: 550px;
+     background-position:center;
+}
+
+.image26 {
+     background: url(../images/26.jpg) no-repeat;
      width: 550px;
      height: 550px;
      background-position:center;

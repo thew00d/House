@@ -4,9 +4,13 @@ $( document ).ready(function() {
 
 	var housePositions = [];
 	var currentPosition = 1;
+	var actions = [];
 	var areas = [];
 	var currentArea = "";
 
+	mouseLocation();
+
+	// Set defaults for the 1st location
 	$("#goleft").hide();
 	$("#goright").hide();
 	$("#goback").hide();
@@ -18,6 +22,7 @@ $( document ).ready(function() {
 	function main()
 	{
 		positions();
+		positionActions();
 		currentPosition = 1;
 
 		// hide all the descriptions
@@ -26,7 +31,11 @@ $( document ).ready(function() {
 		//	$("#description " +  areas[x]).hide();			
 		//}
 
-		$("a").click(
+		/* ----------------------------------------------------------
+		Overrides the a click event so you can use the navigation buttons
+		-------------------------------------------------------------*/
+
+		$("#housepic a").click(
 			function() 
 			{ 		
 				event.preventDefault();
@@ -42,7 +51,7 @@ $( document ).ready(function() {
 
 							currentPosition = housePositions[currentPosition].forwardPosition;
 							//console.log( housePositions[currentPosition].description) );
-							console.log("classname: " +  getAreaClassName(housePositions[currentPosition].description) );
+							//console.log("classname: " +  getAreaClassName(housePositions[currentPosition].description) );
 
 						}          
 
@@ -76,7 +85,7 @@ $( document ).ready(function() {
 					default:
 						break;
 				}
-				console.log("show: #description " +  getAreaClassName(housePositions[currentPosition].description));
+				//console.log("show: #description " +  getAreaClassName(housePositions[currentPosition].description));
 				//$("." +  getAreaClassName(housePositions[currentPosition].description)).show();			
 
 				console.log('image' + currentPosition);
@@ -126,6 +135,28 @@ $( document ).ready(function() {
 				return false; 
 			} 
 		);	
+	
+		/*-------------------------------------------------------
+		This tests for clicking on an area of the image - for
+		clicking on light switches and the like
+		-------------------------------------------------------*/
+		$('#housepic').click( function (event) {
+			var x = event.pageX - $('#housepic').offset().left
+			var y = event.pageY - $('#housepic').offset().top
+			
+			for (var p = 0; p < actions.length; p ++)
+			{
+				if (actions[p].position = currentPosition )
+				{
+					if ( x > actions[p].minx && x < actions[p].maxx && y > actions[p].miny && y < actions[p].maxy )
+					{
+						$("#housepic").removeClass('image' + currentPosition);
+						$("#housepic").addClass('image' + actions[p].newposition);
+						currentPosition = actions[p].newposition;
+					}	
+				}
+			}
+		});	
 
 	}
 
@@ -141,7 +172,34 @@ $( document ).ready(function() {
 	  addArea(description);
 	}
 
+	function action(position, minx, miny, maxx, maxy, newposition)
+	{
+		this.position = position;
+		this.minx = minx;
+		this.miny = miny;
+		this.maxx = maxx;
+		this.maxy = maxy;
+		this.newposition = newposition;
+	}
 
+	/* ----------------------------------------------------------
+	This sets up clickable positions on pictures for swtitching on
+	lights etc
+	-------------------------------------------------------------*/
+	function positionActions()
+	{
+
+		// switch hall light on
+		actions.push(new action(2, 165, 240, 209, 276, 23))
+
+		// switch hall light off
+		actions.push(new action(23, 225, 272, 269, 320, 2))
+	}
+
+	/* ----------------------------------------------------------
+	This sets up the map of the house and what happens when you click
+	on the navigation buttons, and the Headings to each room
+	-------------------------------------------------------------*/
 	function positions() 
 	{
 
@@ -223,8 +281,14 @@ $( document ).ready(function() {
 		// 22
 		housePositions.push(new position(22, 0, 0, 0, 21, "Back Garden"));
 
+		// 23 - Hallway lights on
+		housePositions.push(new position(23, 10, 3, 1, 0, "Hallway"));
+
 	}
 
+	/* ----------------------------------------------------------
+	This is the longer descriptions for each room of the house
+	-------------------------------------------------------------*/
 	function positionDescription(position)
 	{
 		var posDes;
@@ -236,7 +300,7 @@ $( document ).ready(function() {
 				break;
 
 			case 'Hallway':
-				posDes = "You now find yourself in the hallway.  This provides several options to you.  You can go up the stairs to the 2nd floor, or to your right there is the living room.  Shoes should be removed here to avoid any stainage on the cream carpets that are fitted throughout the house.";
+				posDes = "You now find yourself in the hallway.  This provides several options to you.  You can go up the stairs to the 2nd floor, or to your right there is the living room.  Shoes should be removed here to avoid any stainage on the cream carpets that are fitted throughout the house.  If it is too dark, feel free to turn on the light.";
 				return posDes;
 				break;
 
@@ -270,7 +334,7 @@ $( document ).ready(function() {
 				return posDes;
 				break;		
 
-			case 'Spare Room':
+			case 'Junk Room':
 				posDes = "this is the spare room";
 				return posDes;
 				break;			
@@ -288,6 +352,10 @@ $( document ).ready(function() {
 		}
 	}
 
+	/* ----------------------------------------------------------
+	This turns the areaname into a useable class name and adds to 
+	the array
+	-------------------------------------------------------------*/
 	function addArea(areaname)
 	{
 		var areaFound = false;
@@ -309,12 +377,23 @@ $( document ).ready(function() {
 		}
 	}
 
-	function getAreaClassName(areaname)
+	function mouseLocation(){		
+		//$('#housepic').mousemove( function (event) {
+			$('#housepic').click( function (event) {
+
+			var x = event.pageX - $('#housepic').offset().left
+			var y = event.pageY - $('#housepic').offset().top
+				console.log(x + " " + y);
+			});	
+		//});	
+	}
+
+	/*function getAreaClassName(areaname)
 	{
 		areaname = areaname.toLowerCase();
 		areaname = areaname.replace(/\s+/g, '');
 		return areaname.trim();
 
-	}
+	}*/
 
 });
