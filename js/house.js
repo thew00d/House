@@ -150,13 +150,31 @@ $( document ).ready(function() {
 				{
 					if ( x > actions[p].minx && x < actions[p].maxx && y > actions[p].miny && y < actions[p].maxy )
 					{
-						$("#housepic").removeClass('image' + currentPosition);
-						$("#housepic").addClass('image' + actions[p].newposition);
-						currentPosition = actions[p].newposition;
+						// If its a new position then show the new picture
+						if (actions[p].newposition > 0)
+						{
+							$("#housepic").removeClass('image' + currentPosition);
+							$("#housepic").addClass('image' + actions[p].newposition);
+							currentPosition = actions[p].newposition;
+						}
+						//If its a sound then play the sound
+						else if (actions[p].sound > 0)
+						{
+							playSound(actions[p].sound)
+						}
 					}	
 				}
 			}
 		});	
+
+	}
+
+	function playSound(sound)
+	{
+
+		var clickSound = new Audio('sounds/' + sound + '.mp3');
+		clickSound.play();
+		  console.log("sound played");
 
 	}
 
@@ -172,7 +190,7 @@ $( document ).ready(function() {
 	  addArea(description);
 	}
 
-	function action(position, minx, miny, maxx, maxy, newposition)
+	function action(position, minx, miny, maxx, maxy, newposition, sound)
 	{
 		this.position = position;
 		this.minx = minx;
@@ -180,6 +198,7 @@ $( document ).ready(function() {
 		this.maxx = maxx;
 		this.maxy = maxy;
 		this.newposition = newposition;
+		this.sound = sound;
 	}
 
 	/* ----------------------------------------------------------
@@ -190,11 +209,19 @@ $( document ).ready(function() {
 	{
 
 		// switch hall light on
-		actions.push(new action(2, 165, 240, 209, 276, 23))
+		actions.push(new action(2, 165, 240, 209, 276, 23, 0))
 
 		// switch hall light off
-		actions.push(new action(23, 225, 272, 269, 320, 2))
-	}
+		actions.push(new action(23, 225, 272, 269, 320, 2, 0))
+
+		// switch landing light on
+		actions.push(new action(11, 266, 156, 274, 174, 24, 0))
+
+		// play doorbell sound
+		actions.push(new action(1, 444, 103, 461, 122, 0, 1))	
+
+		// play door knock sound
+		actions.push(new action(1, 433, 32, 473, 47, 0, 2))		}
 
 	/* ----------------------------------------------------------
 	This sets up the map of the house and what happens when you click
@@ -295,7 +322,7 @@ $( document ).ready(function() {
 		switch(position)
 		{
 			case 'Front Door':
-				posDes = "This is the front door.  As front doors go, it's fairly standard.  It has a lock which a key can be inserted into and with no more than a 40 degree turn to the left the door will open.";
+				posDes = "This is the front door.  Feel free to go in but it might be considered rude not to knock or ring the bell (which oddly is located where you insert the key).";
 				return posDes;
 				break;
 
