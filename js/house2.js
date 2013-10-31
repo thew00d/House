@@ -228,7 +228,7 @@ var house =
 						//If its a sound then play the sound
 						else if (actions[p].sound > 0)
 						{
-							playSound(actions[p].sound)
+							house.playSound(actions[p].sound)
 						}
 					}	
 				}
@@ -254,8 +254,8 @@ var house =
 	  this.leftPosition = leftPosition;
 	  this.rightPosition = rightPosition;
 	  this.description = description;
-	  this.verboseDescription = this.positionDescription(this.description);
-	  addArea(description);
+	  this.verboseDescription = house.positionDescription(description);
+	  house.addArea(description);
 	},
 
 	action: function(position, minx, miny, maxx, maxy, newposition, sound)
@@ -277,19 +277,22 @@ var house =
 	{
 
 		// switch hall light on
-		actions.push(new action(2, 165, 240, 209, 276, 23, 0))
+		actions.push(new house.action(2, 165, 240, 209, 276, 23, 0))
 
 		// switch hall light off
-		actions.push(new action(23, 225, 272, 269, 320, 2, 0))
+		actions.push(new house.action(23, 225, 272, 269, 320, 2, 0))
 
 		// switch landing light on
-		actions.push(new action(11, 266, 156, 274, 174, 24, 0))
+		//actions.push(new house.action(11, 266, 156, 274, 174, 24, 0))
 
 		// play doorbell sound
-		actions.push(new action(1, 444, 103, 461, 122, 0, 1))	
+		actions.push(new house.action(1, 444, 103, 461, 122, 0, 1))	
 
 		// play door knock sound
-		actions.push(new action(1, 433, 32, 473, 47, 0, 2))		
+		actions.push(new house.action(1, 433, 32, 473, 47, 0, 2))		
+
+		// play door knock sound
+		actions.push(new house.action(1, 200, 365, 312, 412, 0, 2))	
 	}, 
 
 	/* ----------------------------------------------------------
@@ -301,84 +304,84 @@ var house =
 
 		//forwardPosition, rightPosition, backPosition, leftPosition
 		// 0
-		this.housePositions.push(new this.position(0, 0, 0, 0, 0, ""));
+		housePositions.push(new house.position(0, 0, 0, 0, 0, ""));
 
 		// 1
-		this.housePositions.push(new this.position(1, 2, 0, 0, 0, "Front Door"));
+		housePositions.push(new house.position(1, 2, 0, 0, 0, "Front Door"));
 
 		// 2
-		this.housePositions.push(new this.position(2, 10, 3, 1, 0, "Hallway"));
+		housePositions.push(new house.position(2, 10, 3, 1, 0, "Hallway"));
 
 		// 3
-		this.housePositions.push(new this.position(3, 5, 4, 0, 2, "Living Room"));
+		housePositions.push(new house.position(3, 5, 4, 0, 2, "Living Room"));
 
 		// 4
-		this.housePositions.push(new this.position(4, 6, 0, 0, 3, "Living Room"));				
+		housePositions.push(new house.position(4, 6, 0, 0, 3, "Living Room"));				
 
 		// 5
-		this.housePositions.push(new this.position(5, 7, 6, 3, 0, "Living Room"));
+		housePositions.push(new house.position(5, 7, 6, 3, 0, "Living Room"));
 
 		// 6
-		this.housePositions.push(new this.position(6, 0, 0, 4, 5, "Living Room"));
+		housePositions.push(new house.position(6, 0, 0, 4, 5, "Living Room"));
 
 		// 7
-		this.housePositions.push(new this.position(7, 21, 8, 5, 0, "Kitchen"));
+		housePositions.push(new house.position(7, 21, 8, 5, 0, "Kitchen"));
 
 		// 8
-		this.housePositions.push(new this.position(8, 0, 0, 0, 7, "Kitchen"));
+		housePositions.push(new house.position(8, 0, 0, 0, 7, "Kitchen"));
 
 		// 9
-		this.housePositions.push(new this.position(9, 10, 0, 2, 0, "Stairs"));
+		housePositions.push(new house.position(9, 10, 0, 2, 0, "Stairs"));
 
 		// 10
-		this.housePositions.push(new this.position(10, 11, 0, 2, 0, "Stairs"));
+		housePositions.push(new house.position(10, 11, 0, 2, 0, "Stairs"));
 
 		// 11
-		this.housePositions.push(new this.position(11, 0, 15, 10, 12, "Landing"));
+		housePositions.push(new house.position(11, 0, 15, 10, 12, "Landing"));
 
 		// 12
-		this.housePositions.push(new this.position(12, 14, 11, 0, 13, "Landing"));
+		housePositions.push(new house.position(12, 14, 11, 0, 13, "Landing"));
 
 
 		// 13
-		this.housePositions.push(new this.position(13, 0, 12, 0, 0, "Bathroom"));
+		housePositions.push(new this.position(13, 0, 12, 0, 0, "Bathroom"));
 
 
 		// 14
-		this.housePositions.push(new this.position(14, 0, 0, 12, 0, "Spare room"));
+		housePositions.push(new this.position(14, 0, 0, 12, 0, "Spare room"));
 
 
 		// 15
-		this.housePositions.push(new this.position(15, 17, 16, 0, 11, "Landing"));
+		housePositions.push(new this.position(15, 17, 16, 0, 11, "Landing"));
 
 
 		// 16
-		this.housePositions.push(new this.position(16, 0, 0, 0, 15, "Junk Room"));
+		housePositions.push(new this.position(16, 0, 0, 0, 15, "Junk Room"));
 
 
 		// 17
-		this.housePositions.push(new this.position(17, 18, 20, 15, 0, "Bedroom"));
+		housePositions.push(new this.position(17, 18, 20, 15, 0, "Bedroom"));
 
 
 		// 18
-		this.housePositions.push(new this.position(18, 0, 19, 17, 0, "Bedroom"));
+		housePositions.push(new this.position(18, 0, 19, 17, 0, "Bedroom"));
 
 
 		// 19
-		this.housePositions.push(new this.position(19, 0, 0, 20, 18, "Bedroom"));
+		housePositions.push(new this.position(19, 0, 0, 20, 18, "Bedroom"));
 
 
 		// 20
-		this.housePositions.push(new this.position(20, 19, 0, 0, 17, "Bedroom"));
+		housePositions.push(new this.position(20, 19, 0, 0, 17, "Bedroom"));
 
 		// 21
-		this.housePositions.push(new this.position(21, 0, 22, 7, 0, "Back Garden"));
+		housePositions.push(new this.position(21, 0, 22, 7, 0, "Back Garden"));
 
 		// 22
-		this.housePositions.push(new this.position(22, 0, 0, 0, 21, "Back Garden"));
+		housePositions.push(new this.position(22, 0, 0, 0, 21, "Back Garden"));
 
 		// 23 - Hallway lights on
-		this.housePositions.push(new this.position(23, 10, 3, 1, 0, "Hallway"));
+		housePositions.push(new this.position(23, 10, 3, 1, 0, "Hallway"));
 
 	},
 

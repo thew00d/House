@@ -121,8 +121,8 @@ body {
     height: 50px;
 }
 
-footer {
-
+#footercontent {
+    margin: 20px;
 }
 
 h1 {
