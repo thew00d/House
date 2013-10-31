@@ -240,6 +240,16 @@ h1 {
 /*******************************************/
 
 
+#thehouse {
+    float: left;
+    padding: 5px 5px;
+}
+
+#abouttext {
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 #house {      
      width: 550px;      
      height: 550px;
@@ -432,3 +442,4 @@ h1 {
      height: 550px;
      background-position:center;
 }
+
