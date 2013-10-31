@@ -215,7 +215,7 @@ $( document ).ready(function() {
 		actions.push(new action(23, 225, 272, 269, 320, 2, 0))
 
 		// switch landing light on
-		actions.push(new action(11, 266, 156, 274, 174, 24, 0))
+		//actions.push(new action(11, 266, 156, 274, 174, 24, 0))
 
 		// play doorbell sound
 		actions.push(new action(1, 444, 103, 461, 122, 0, 1))	
