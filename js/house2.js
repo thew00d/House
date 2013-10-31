@@ -81,7 +81,7 @@ var house =
 		$("#goleft").hide();
 		$("#goright").hide();
 		$("#goback").hide();
-		$("header h2").text("Front Door");
+		$("#subheader h2").text("Front Door");
 		$("#description").text(this.positionDescription("Front Door"));	
 	},
 
@@ -198,7 +198,7 @@ var house =
 				}
 
 				$("#description").text(housePositions[currentPosition].verboseDescription);
-				$("header h2").text(housePositions[currentPosition].description);
+				$("#subheader h2").text(housePositions[currentPosition].description);
 
 				return false; 
 			} 
